@@ -25,6 +25,7 @@ public class InventoryManagementSystem extends Application {
         
         stage.setScene(scene);
         stage.show();
+        
     }
 
     /**
