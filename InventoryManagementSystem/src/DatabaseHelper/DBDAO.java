@@ -8,6 +8,7 @@ package DatabaseHelper;
 import Beans.ProductItem;
 import Beans.SoldProductItem;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -40,6 +41,8 @@ public class DBDAO {
 
         }
     }
+     
+     
 
 
    
@@ -93,6 +96,49 @@ public class DBDAO {
             throw e;
         }
     }
+    
+       public static  ObservableList<SoldProductItem> getSoldProductbyDate(String date) throws Exception {
+
+        String sql = "select * from tableSoldProducts where productSaleDate = '" + date + "'";
+        ResultSet rs=null;
+        try {
+          
+             rs = DBUtil.dbExecute(sql);
+
+            ObservableList<SoldProductItem> productList = FXCollections.observableArrayList();
+           
+             while (rs.next()) {
+                productList.add(new SoldProductItem(rs.getString("productId"), rs.getString("productName"), rs.getDouble("productPrice"),rs.getString("productSaleDate")));
+               
+            }
+            
+            return productList;
+
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
+
+   
+      public static  String getSumOfSoldProductbyDate(String date) throws Exception {
+
+        double sum=0;
+       
+        try {
+            ObservableList<SoldProductItem> productList =DBDAO.getSoldProductbyDate(date);
+            for (int i=0;i<productList.size();i++ ){
+                sum+=productList.get(i).getProductPrice();
+            }
+            
+            return String.valueOf(sum);
+           
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
+     
     
      public static ObservableList<SoldProductItem> getAllSoldProducts() throws Exception {
         

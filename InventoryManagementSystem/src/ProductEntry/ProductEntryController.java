@@ -75,6 +75,7 @@ public class ProductEntryController implements Initializable {
                 tableProducts.setItems(DBDAO.getAllProducts());
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("Product Added Successfully");
+                alert.showAndWait();
             } catch (Exception ex) {
                 Logger.getLogger(ProductEntryController.class.getName()).log(Level.SEVERE, null, ex);
             }

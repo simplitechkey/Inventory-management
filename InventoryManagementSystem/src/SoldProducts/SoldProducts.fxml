@@ -7,14 +7,14 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="SoldProducts.SoldProductsController">
+<AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SoldProducts.SoldProductsController">
    <children>
-      <TableView fx:id="tableSoldProducts" layoutX="50.0" layoutY="138.0" prefHeight="224.0" prefWidth="483.0" />
-      <DatePicker fx:id="dateField" layoutX="380.0" layoutY="56.0" />
-      <TextField fx:id="fieldId" layoutX="14.0" layoutY="56.0" prefHeight="27.0" prefWidth="233.0" promptText="Enter Id of Product to Find" />
-      <Button layoutX="266.0" layoutY="56.0" mnemonicParsing="false" text="Find Product" />
-      <Button layoutX="504.0" layoutY="94.0" mnemonicParsing="false" text="Search " />
-      <Label layoutX="375.0" layoutY="20.0" prefHeight="27.0" prefWidth="216.0" text="Select Date to sort Products Sold :" />
+      <TableView fx:id="tableSoldProducts" layoutX="48.0" layoutY="237.0" prefHeight="286.0" prefWidth="581.0" />
+      <DatePicker fx:id="dateField" layoutX="323.0" layoutY="68.0" promptText="Enter date" />
+      <TextField fx:id="fieldId" layoutX="21.0" layoutY="67.0" prefHeight="27.0" prefWidth="233.0" promptText="Enter Id of Product to Find" />
+      <Button layoutX="96.0" layoutY="112.0" mnemonicParsing="false" text="Find Product" />
+      <Button layoutX="375.0" layoutY="112.0" mnemonicParsing="false" onAction="#sortOnDateAction" text="Sort" />
+      <Label layoutX="315.0" layoutY="39.0" prefHeight="27.0" prefWidth="216.0" text="Select Date to sort Products Sold :" />
+      <Label fx:id="lblSum" layoutX="313.0" layoutY="181.0" prefHeight="38.0" prefWidth="262.0" text="Total Amount for Above Date: " />
    </children>
 </AnchorPane>

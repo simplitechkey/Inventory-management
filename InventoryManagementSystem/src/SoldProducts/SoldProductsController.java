@@ -14,12 +14,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -39,6 +43,8 @@ public class SoldProductsController implements Initializable {
     private DatePicker dateField;
     @FXML
     private TextField fieldId;
+    @FXML
+    private Label lblSum;
 
     /**
      * Initializes the controller class.
@@ -57,7 +63,7 @@ public class SoldProductsController implements Initializable {
             
              TableColumn<SoldProductItem,String>productSaleDate=new TableColumn("productSaleDate");
             productSaleDate.setCellValueFactory(new PropertyValueFactory<>("productSaleDate"));
-            tableSoldProducts.getColumns().addAll(productId,productName,productPrice);
+            tableSoldProducts.getColumns().addAll(productId,productName,productPrice,productSaleDate);
             tableSoldProducts.setItems(DBDAO.getAllSoldProducts());
             
         } catch (Exception ex) {
@@ -65,5 +71,21 @@ public class SoldProductsController implements Initializable {
         }
 
     }    
-    
+
+    @FXML
+    private void sortOnDateAction(ActionEvent event) throws Exception {
+       String sum = "0";
+       String date=dateField.getValue().toString();
+       ObservableList<SoldProductItem> sortedproductList=DBDAO.getSoldProductbyDate(date);
+        if(!sortedproductList.isEmpty()){
+        tableSoldProducts.setItems(sortedproductList);
+        sum=DBDAO.getSumOfSoldProductbyDate(date);
+        lblSum.setText("Total Collectioin on this date is :"+sum);
+        
+    }else{
+             Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("No Records Found");
+                alert.showAndWait();
+        }
+    }
 }
