@@ -16,5 +16,6 @@
       <Button layoutX="375.0" layoutY="112.0" mnemonicParsing="false" onAction="#sortOnDateAction" text="Sort" />
       <Label layoutX="315.0" layoutY="39.0" prefHeight="27.0" prefWidth="216.0" text="Select Date to sort Products Sold :" />
       <Label fx:id="lblSum" layoutX="313.0" layoutY="181.0" prefHeight="38.0" prefWidth="262.0" text="Total Amount for Above Date: " />
+      <Button layoutX="402.0" layoutY="560.0" mnemonicParsing="false" onAction="#sendReportEmailAction" prefHeight="27.0" prefWidth="216.0" text="Send Todays Report" />
    </children>
 </AnchorPane>

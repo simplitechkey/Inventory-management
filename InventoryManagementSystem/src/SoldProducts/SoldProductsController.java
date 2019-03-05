@@ -11,6 +11,8 @@ import DatabaseHelper.DBDAO;
 import ProductEntry.ProductEntryController;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +31,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * FXML Controller class
@@ -88,4 +98,45 @@ public class SoldProductsController implements Initializable {
                 alert.showAndWait();
         }
     }
-}
+
+    @FXML
+    private void sendReportEmailAction(ActionEvent event) {
+       final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+  // Get a Properties object
+     Properties props = System.getProperties();
+     props.setProperty("mail.smtp.host", "smtp.gmail.com");
+     props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+     props.setProperty("mail.smtp.socketFactory.fallback", "false");
+     props.setProperty("mail.smtp.port", "465");
+     props.setProperty("mail.smtp.socketFactory.port", "465");
+     props.put("mail.smtp.auth", "true");
+     props.put("mail.debug", "true");
+     props.put("mail.store.protocol", "pop3");
+     props.put("mail.transport.protocol", "smtp");
+     final String username = "omskamate@gmail.com";//
+     final String password = "omkar#14u";
+     try{
+     Session session = Session.getDefaultInstance(props, 
+                          new Authenticator(){
+                             protected PasswordAuthentication getPasswordAuthentication() {
+                                return new PasswordAuthentication(username, password);
+                             }});
+
+   // -- Create a new message --
+     Message msg = new MimeMessage(session);
+
+  // -- Set the FROM and TO fields --
+     msg.setFrom(new InternetAddress("omskamate@gmail.com"));
+     msg.setRecipients(Message.RecipientType.TO, 
+                      InternetAddress.parse("nikteshriya@gmail.com",false));
+     msg.setSubject("Hello");
+     msg.setText("How are you");
+     msg.setSentDate(new Date());
+     Transport.send(msg);
+     System.out.println("Message sent.");
+     }catch (MessagingException e){ 
+         System.out.println("Erreur d'envoi, cause: " + e);
+     }
+     }
+    }
+
