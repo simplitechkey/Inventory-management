@@ -98,5 +98,22 @@ public class ProductEntryController implements Initializable {
             Logger.getLogger(ProductEntryController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void backAction(ActionEvent event) {
+        
+        try {
+            Stage stage2 = (Stage) fieldId.getScene().getWindow();
+            stage2.close();
+            AnchorPane root = FXMLLoader.load(getClass().getResource("/inventorymanagementsystem/FXMLDocument.fxml"));
+            Stage stage=new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ProductEntryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     
 }

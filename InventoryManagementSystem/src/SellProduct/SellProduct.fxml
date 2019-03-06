@@ -13,7 +13,7 @@
       <Button layoutX="437.0" layoutY="111.0" mnemonicParsing="false" onAction="#allSoldProductsAction" prefHeight="80.0" prefWidth="150.0" text="See All Sold Products" />
       <AnchorPane layoutY="7.0" prefHeight="88.0" prefWidth="690.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="29.0" layoutY="22.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="79.0" style="-fx-background-color: white;" text="Back" />
+            <Button layoutX="29.0" layoutY="22.0" mnemonicParsing="false" onAction="#backAction" prefHeight="43.0" prefWidth="79.0" style="-fx-background-color: white;" text="Back" />
          </children>
       </AnchorPane>
    </children>

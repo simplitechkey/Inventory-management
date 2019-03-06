@@ -19,7 +19,7 @@
       <Button layoutX="583.0" layoutY="151.0" mnemonicParsing="false" onAction="#sendReportEmailAction" prefHeight="67.0" prefWidth="177.0" text="Send Todays Report" />
       <AnchorPane layoutX="12.0" layoutY="10.0" prefHeight="88.0" prefWidth="690.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="29.0" layoutY="22.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="79.0" style="-fx-background-color: white;" text="Back" />
+            <Button layoutX="29.0" layoutY="22.0" mnemonicParsing="false" onAction="#backAction" prefHeight="43.0" prefWidth="79.0" style="-fx-background-color: white;" text="Back" />
          </children>
       </AnchorPane>
    </children>

@@ -16,7 +16,7 @@
       <Button layoutX="387.0" layoutY="229.0" mnemonicParsing="false" onAction="#sellProductAction" prefHeight="27.0" prefWidth="139.0" text="Delete a Product" />
       <AnchorPane layoutX="2.0" prefHeight="88.0" prefWidth="690.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="29.0" layoutY="22.0" mnemonicParsing="false" onAction="#sellProductAction" prefHeight="43.0" prefWidth="79.0" style="-fx-background-color: white;" text="Back" />
+            <Button layoutX="29.0" layoutY="22.0" mnemonicParsing="false" onAction="#backAction" prefHeight="43.0" prefWidth="79.0" style="-fx-background-color: white;" text="Back" />
          </children>
       </AnchorPane>
    </children>

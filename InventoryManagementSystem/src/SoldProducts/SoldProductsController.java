@@ -5,10 +5,10 @@
  */
 package SoldProducts;
 
-import Beans.ProductItem;
 import Beans.SoldProductItem;
 import DatabaseHelper.DBDAO;
 import ProductEntry.ProductEntryController;
+import SellProduct.SellProductController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
@@ -21,7 +21,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -30,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -138,5 +138,21 @@ public class SoldProductsController implements Initializable {
          System.out.println("Erreur d'envoi, cause: " + e);
      }
      }
+
+    @FXML
+    private void backAction(ActionEvent event) {
+        
+          try {
+           Stage stage2 = (Stage) fieldId.getScene().getWindow();
+           stage2.close();
+           AnchorPane root = FXMLLoader.load(getClass().getResource("/SellProduct/SellProduct.fxml"));
+           Stage stage=new Stage();
+           Scene scene = new Scene(root);
+           stage.setScene(scene);
+           stage.show();
+       } catch (IOException ex) {
+           Logger.getLogger(SellProductController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
     }
 
