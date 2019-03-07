@@ -13,11 +13,14 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,6 +55,7 @@ import javax.mail.internet.MimeMultipart;
 import jxl.Range;
 import jxl.Workbook;
 import jxl.format.Colour;
+import jxl.format.Font;
 import jxl.write.WritableCell;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
@@ -171,7 +175,7 @@ public class SoldProductsController implements Initializable {
 
          // Part two is attachment
          messageBodyPart = new MimeBodyPart();
-         String filename = "abc.txt";
+         String filename ="dailyreport.xls";
          DataSource source = new FileDataSource(filename);
          messageBodyPart.setDataHandler(new DataHandler(source));
          messageBodyPart.setFileName(filename);
@@ -208,12 +212,47 @@ public class SoldProductsController implements Initializable {
     @FXML
     private void generateAction(ActionEvent event) {
         try {
+            ObservableList<SoldProductItem> todayIdsList = FXCollections.observableArrayList();
             LocalDate today=LocalDate.now();
-            File file=new File("dailyreport.xlsx");
+            
+            File file=new File("dailyreport.xls");
+            
             WritableWorkbook myexcel=Workbook.createWorkbook(file);
             WritableSheet mysheet=myexcel.createSheet("Report for "+today.toString(),0);
-          jxl.write.Label l=new  jxl.write.Label(0,0,"data1");
-           mysheet.addCell(l);
+            ArrayList<String> columnNamesList=new ArrayList();
+            columnNamesList.addAll(Arrays.asList("Product Id","Product Name","Product Sale Date","Product Price"));
+            todayIdsList=DBDAO.getSoldProductbyDate(today.toString());
+            for(int i=0;i<columnNamesList.size();i++){
+              jxl.write.Label l=new  jxl.write.Label(i,0,columnNamesList.get(i));
+               mysheet.addCell(l);
+                         
+               for(int j=0;j<todayIdsList.size();j++){
+                      jxl.write.Label l2=new  jxl.write.Label(0,j+1,todayIdsList.get(j).getProductId());
+                      
+                      mysheet.addCell(l2);
+               }
+                for(int j=0;j<todayIdsList.size();j++){
+                      jxl.write.Label l2=new  jxl.write.Label(1,j+1,todayIdsList.get(j).getProductName());
+                      mysheet.addCell(l2);
+               }
+                 for(int j=0;j<todayIdsList.size();j++){
+                      jxl.write.Label l2=new  jxl.write.Label(2,j+1,todayIdsList.get(j).getProductSaleDate());
+                      mysheet.addCell(l2);
+               }
+                  for(int j=0;j<todayIdsList.size();j++){
+                      jxl.write.Label l2=new  jxl.write.Label(3,j+1,String.valueOf(todayIdsList.get(j).getProductPrice()));
+                      mysheet.addCell(l2);
+                      
+                      if(j==todayIdsList.size()-1){
+                     jxl.write.Label l3=new  jxl.write.Label(3,j+2,"Total Collection :"+DBDAO.getSumOfSoldProductbyDate(today.toString()));
+                     mysheet.addCell(l3);
+                      }
+                      
+               }
+            }
+               
+            
+            
            myexcel.write();
            myexcel.close();
            
