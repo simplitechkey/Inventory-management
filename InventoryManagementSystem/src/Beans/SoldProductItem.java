@@ -14,12 +14,14 @@ public class SoldProductItem {
     String productName;
     double productPrice;
     String productSaleDate;
+    String MOP;
 
-    public SoldProductItem(String productId, String productName, double productPrice, String productSaleDate) {
+    public SoldProductItem(String productId, String productName, double productPrice, String productSaleDate, String MOP) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productSaleDate = productSaleDate;
+        this.MOP = MOP;
     }
 
     public String getProductId() {
@@ -53,7 +55,15 @@ public class SoldProductItem {
     public void setProductSaleDate(String productSaleDate) {
         this.productSaleDate = productSaleDate;
     }
-    
+
+    public String getMOP() {
+        return MOP;
+    }
+
+    public void setMOP(String MOP) {
+        this.MOP = MOP;
+    }
+
     
     
 }

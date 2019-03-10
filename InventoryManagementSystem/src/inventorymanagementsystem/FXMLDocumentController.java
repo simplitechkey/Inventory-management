@@ -37,6 +37,7 @@ public class FXMLDocumentController implements Initializable {
             label.setText("Hello World!");
             AnchorPane root = FXMLLoader.load(getClass().getResource("/ProductEntry/ProductEntry.fxml"));
             Stage stage=new Stage();
+            stage.setResizable(false);
             Scene scene = new Scene(root);
             
             stage.setScene(scene);

@@ -31,10 +31,10 @@ public class DBDAO {
         }
     }
      
-     public static void insertSoldProduct(String productId, String productName, double productPrice,String date) //public static void insertBook(String bookId, String bookSubject, String bookBranch)
+     public static void insertSoldProduct(String productId, String productName, double productPrice,String date,String MOP) //public static void insertBook(String bookId, String bookSubject, String bookBranch)
     {
        // String sql = "INSERT INTO `productsTable`(`productId`,`productName`,`productPrice`) VALUES "+(1,NULL,NULL);";
-         String sql="insert into tableSoldProducts ( productId, productName, productPrice,productSaleDate) values ('"+productId+"','"+productName+"',"+productPrice+",'"+date+"');";
+         String sql="insert into tableSoldProducts ( productId, productName, productPrice,productSaleDate,MOP) values ('"+productId+"','"+productName+"',"+productPrice+",'"+date+"','"+MOP+"');";
         try {
             DBUtil.dbexcuteQuery(sql);
         } catch (Exception e) {
@@ -75,6 +75,8 @@ public class DBDAO {
 
         }
     }
+    
+    
 
     public static ObservableList<ProductItem> getAllProducts() throws Exception {
         
@@ -108,7 +110,7 @@ public class DBDAO {
             ObservableList<SoldProductItem> productList = FXCollections.observableArrayList();
            
              while (rs.next()) {
-                productList.add(new SoldProductItem(rs.getString("productId"), rs.getString("productName"), rs.getDouble("productPrice"),rs.getString("productSaleDate")));
+                productList.add(new SoldProductItem(rs.getString("productId"), rs.getString("productName"), rs.getDouble("productPrice"),rs.getString("productSaleDate"),rs.getString("MOP")));
                
             }
             
@@ -149,7 +151,7 @@ public class DBDAO {
 
             ObservableList<SoldProductItem> productList = FXCollections.observableArrayList();
              while (rs.next()) {
-                productList.add(new SoldProductItem(rs.getString("productId"), rs.getString("productName"), rs.getDouble("productPrice"),rs.getString("productSaleDate")));
+                productList.add(new SoldProductItem(rs.getString("productId"), rs.getString("productName"), rs.getDouble("productPrice"),rs.getString("productSaleDate"),rs.getString("MOP")));
                
             }
             return productList;
@@ -160,6 +162,8 @@ public class DBDAO {
             throw e;
         }
     }
-
+     
+     
+      
     
 }

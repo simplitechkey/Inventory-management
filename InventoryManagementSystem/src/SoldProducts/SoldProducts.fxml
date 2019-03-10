@@ -1,43 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SoldProducts.SoldProductsController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: #393939;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SoldProducts.SoldProductsController">
    <children>
-      <TableView fx:id="tableSoldProducts" layoutX="22.0" layoutY="269.0" prefHeight="321.0" prefWidth="740.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" />
-      <DatePicker fx:id="dateField" layoutX="550.0" layoutY="150.0" prefHeight="38.0" prefWidth="194.0" promptText="Enter date">
+      <TableView fx:id="tableSoldProducts" layoutX="15.0" layoutY="224.0" prefHeight="380.0" prefWidth="940.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="146.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="224.0" />
+      <DatePicker fx:id="dateField" layoutX="362.0" layoutY="115.0" prefHeight="38.0" prefWidth="194.0" promptText="Enter date">
          <effect>
             <DropShadow />
          </effect></DatePicker>
-      <TextField fx:id="fieldId" layoutX="53.0" layoutY="150.0" prefHeight="38.0" prefWidth="338.0" promptText="Enter Id of Product to Find" style="-fx-border-color: grey;" />
-      <Button layoutX="130.0" layoutY="204.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: white;" text="Find Product">
+      <TextField fx:id="fieldId" layoutX="32.0" layoutY="115.0" prefHeight="38.0" prefWidth="266.0" promptText="Enter Id of Product to Find" style="-fx-border-color: grey;" />
+      <Button layoutX="90.0" layoutY="166.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: white;" text="Find Product">
          <effect>
             <DropShadow />
-         </effect></Button>
-      <Button layoutX="604.0" layoutY="204.0" mnemonicParsing="false" onAction="#sortOnDateAction" prefHeight="38.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: white;" text="Sort">
+         </effect>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="572.0" layoutY="115.0" mnemonicParsing="false" onAction="#sortOnDateAction" prefHeight="38.0" prefWidth="194.0" style="-fx-background-radius: 20; -fx-background-color: white;" text="See Sale for selected Date">
          <effect>
             <DropShadow />
-         </effect></Button>
-      <Label layoutX="550.0" layoutY="116.0" prefHeight="27.0" prefWidth="194.0" text="Select Date to sort Products Sold :" />
-      <Label fx:id="lblSum" layoutX="11.0" layoutY="612.0" prefHeight="38.0" prefWidth="371.0" text="Total Amount for Selected Date: " AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="418.0" AnchorPane.topAnchor="612.0" />
-      <Button layoutX="583.0" layoutY="597.0" mnemonicParsing="false" onAction="#sendReportEmailAction" prefHeight="67.0" prefWidth="177.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Send Todays Report">
+         </effect>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Label layoutX="362.0" layoutY="88.0" prefHeight="27.0" prefWidth="194.0" text="Select Date to sort Products Sold :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="lblSum" layoutX="362.0" layoutY="166.0" prefHeight="38.0" prefWidth="372.0" text="Total Amount for Selected Date  : " textFill="WHITE" AnchorPane.leftAnchor="362.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="166.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Button layoutX="827.0" layoutY="653.0" mnemonicParsing="false" onAction="#sendReportEmailAction" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Send Todays Report">
          <effect>
             <DropShadow />
-         </effect></Button>
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <AnchorPane prefHeight="88.0" prefWidth="690.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="29.0" layoutY="22.0" mnemonicParsing="false" onAction="#backAction" prefHeight="43.0" prefWidth="79.0" style="-fx-background-color: white;" text="Back" />
+            <Button layoutX="29.0" layoutY="22.0" mnemonicParsing="false" onAction="#backAction" prefHeight="43.0" prefWidth="79.0" style="-fx-background-color: white;" text="Back">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font></Button>
          </children>
       </AnchorPane>
-      <Button layoutX="392.0" layoutY="612.0" mnemonicParsing="false" onAction="#generateAction" prefHeight="38.0" prefWidth="136.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Generate Report">
+      <Button layoutX="475.0" layoutY="653.0" mnemonicParsing="false" onAction="#sendMonthlyReportAction" prefHeight="38.0" prefWidth="311.0" style="-fx-background-color: white; -fx-background-radius: 20;" text=" Send Monthly Report for selected month">
          <effect>
             <DropShadow />
-         </effect></Button>
+         </effect>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <ComboBox fx:id="monthList" layoutX="14.0" layoutY="644.0" prefHeight="38.0" prefWidth="135.0" promptText="Select Month" />
+      <Label layoutX="19.0" layoutY="618.0" prefHeight="27.0" prefWidth="260.0" text="Select Month to see monthly Products Sold :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="298.0" layoutY="653.0" mnemonicParsing="false" onAction="#viewMonthlySaleAction" prefHeight="38.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-background-color: white;" text="See monthly sale">
+         <effect>
+            <DropShadow />
+         </effect>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblSumMonth" layoutX="16.0" layoutY="680.0" prefHeight="38.0" prefWidth="372.0" text="Total Amount for Selected Month  : " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fieldYear" layoutX="165.0" layoutY="644.0" prefHeight="38.0" prefWidth="108.0" promptText="Enter Year" style="-fx-border-color: grey;" />
+      <Button layoutX="775.0" layoutY="115.0" mnemonicParsing="false" onAction="#sendReportDateEmailAction" prefHeight="38.0" prefWidth="210.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Send Report of Selected Date">
+         <effect>
+            <DropShadow />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

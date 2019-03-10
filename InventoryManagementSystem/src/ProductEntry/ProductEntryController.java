@@ -41,6 +41,8 @@ public class ProductEntryController implements Initializable {
     private TextField fieldPrice;
     @FXML
     private TextField fieldName;
+    @FXML
+    private TextField fieldId1;
 
     /**
      * Initializes the controller class.
@@ -49,13 +51,13 @@ public class ProductEntryController implements Initializable {
     @SuppressWarnings("unchecked")
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            TableColumn<ProductItem,String>productId=new TableColumn("productId");
+            TableColumn<ProductItem,String>productId=new TableColumn("Product Id");
             productId.setCellValueFactory(new PropertyValueFactory<>("productId"));
             
-            TableColumn<ProductItem,String>productName=new TableColumn("productName");
+            TableColumn<ProductItem,String>productName=new TableColumn("Product Name");
             productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
             
-            TableColumn<ProductItem,Double>productPrice=new TableColumn("productPrice");
+            TableColumn<ProductItem,Double>productPrice=new TableColumn("Product Price");
             productPrice.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
             
             tableProducts.getColumns().addAll(productId,productName,productPrice);
@@ -69,7 +71,7 @@ public class ProductEntryController implements Initializable {
 
     @FXML
     private void addNewProductAction(ActionEvent event) {
-        if(!fieldId.getText().trim().isEmpty() && !fieldName.getText().trim().isEmpty() && !fieldName.getText().trim().isEmpty()){
+        if(!fieldId.getText().trim().isEmpty() && !fieldName.getText().trim().isEmpty() && !fieldPrice.getText().trim().isEmpty()){
             try {
                 DBDAO.insertProduct(fieldId.getText().trim(), fieldName.getText().trim(), Double.parseDouble(fieldPrice.getText().trim()));
                 tableProducts.setItems(DBDAO.getAllProducts());
@@ -108,10 +110,30 @@ public class ProductEntryController implements Initializable {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/inventorymanagementsystem/FXMLDocument.fxml"));
             Stage stage=new Stage();
             Scene scene = new Scene(root);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(ProductEntryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    private void deleteProductAction(ActionEvent event) {
+         if(!fieldId1.getText().trim().isEmpty()){
+            try {
+                DBDAO.deleteProductbyID(fieldId1.getText().trim());
+                tableProducts.setItems(DBDAO.getAllProducts());
+                Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Product deleted Successfully");
+                alert.showAndWait();
+            } catch (Exception ex) {
+                Logger.getLogger(ProductEntryController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }else{
+           Alert alert=new Alert(Alert.AlertType.ERROR);
+           alert.setContentText("Please enter Id to Delete");
         }
         
     }
